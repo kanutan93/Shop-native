@@ -1,0 +1,20 @@
+<ion-card>
+  <img src="../../../assets/cdn/{{item.imageLink}}.jpg"/>
+  <ion-card-content>
+    <ion-card-title>
+      {{item.name}}
+      <p>${{item.price}}.00</p>
+    </ion-card-title>
+  </ion-card-content>
+  <div>
+    <p>{{item.description}}</p>
+  </div>
+  <ion-row no-padding>
+    <ion-col>
+      <button ion-button clear small color="danger" icon-left>
+        <ion-icon name='star'></ion-icon>
+        Add to card
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
