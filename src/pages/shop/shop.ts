@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import {Good} from "../../models/Good";
 import {ItemsService} from "../../services/api/items/items.service";
+import {ShoppingCartService} from "../../services/shopping-cart/shopping-cart.service";
 
 @Component({
   selector: 'page-home',
@@ -9,11 +9,15 @@ import {ItemsService} from "../../services/api/items/items.service";
 })
 export class ShopPage {
   goods: Array<Good> = [];
-  constructor(public navCtrl: NavController, private itemsService: ItemsService) {
+  constructor(private itemsService: ItemsService,
+              private shoppingCartService: ShoppingCartService) {
     this.itemsService.getGoods("").subscribe((res) => {
       this.goods = res;
       console.log(this.goods);
     });
   }
 
+  addToCart(shoppingCart){
+    this.shoppingCartService.addToCart(shoppingCart);
+  }
 }

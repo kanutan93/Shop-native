@@ -1,12 +1,63 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Order</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Order</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-card>
+        <ion-card-content *ngIf="!items.length > 0;">
+            Your shopping cart is empty. Check out our shop to see what's available.
+        </ion-card-content>
+        <ion-card-content *ngIf="items.length > 0;">
+            <div class="row header">
+                <div class="col">name</div>
+                <div class="col">price</div>
+                <div class="col">count</div>
+                <div class="col">total</div>
+                <div class="col">&nbsp;</div>
+            </div>
+            <div class="row" *ngFor="let item of items">
+                <div class="col">
+                    {{item.name}}
+                </div>
+                <div class="col">
+                    {{item.price}}
+                </div>
+                <div class="col">
+                    {{item.count}}
+                </div>
+                <div class="col">
+                    {{item.price * item.count}}
+                </div>
+                <div class="col">
+                    <button ion-button small color="danger" (click)="removeFromCart(item.name)">delete</button>
+                </div>
+            </div>
+            <ion-list>
+                <ion-item>
+                    <ion-label floating>Email</ion-label>
+                    <ion-input type="email" [(ngModel)]="order.email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>First name</ion-label>
+                    <ion-input type="text" [(ngModel)]="order.name"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Last name</ion-label>
+                    <ion-input type="text" [(ngModel)]="order.lastname"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Address</ion-label>
+                    <ion-input type="text" [(ngModel)]="order.address"></ion-input>
+                </ion-item>
+                <button ion-button small  (click)="checkout()">
+                    Checkout
+                </button>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

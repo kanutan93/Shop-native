@@ -11,7 +11,7 @@
 
   <div >
     <div *ngFor="let item of goods" >
-      <item-card [item]="item"></item-card>
+      <item-card (addToCartClk)="addToCart($event)" [item]="item"></item-card>
     </div>
   </div>
 

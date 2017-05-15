@@ -11,7 +11,7 @@
   </div>
   <ion-row no-padding>
     <ion-col>
-      <button ion-button clear small color="danger" icon-left>
+      <button ion-button clear small color="danger" icon-left (click)="addToCart(item.name, item.price, 1)">
         <ion-icon name='star'></ion-icon>
         Add to card
       </button>

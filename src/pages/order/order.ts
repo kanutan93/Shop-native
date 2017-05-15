@@ -1,37 +1,50 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {AlertController, NavController, NavParams} from 'ionic-angular';
+import {ShoppingCart} from "../../models/ShoppingCart";
+import {Order} from "../../models/Order";
+import {OrdersService} from "../../services/api/orders/orders.service";
+import {ShoppingCartService} from "../../services/shopping-cart/shopping-cart.service";
 
 @Component({
-  selector: 'page-list',
-  templateUrl: 'order.html'
+    selector: 'page-list',
+    templateUrl: 'order.html'
 })
 export class ListPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+    items: ShoppingCart[];
+    order: Order = new Order;
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+                private shoppingCartService: ShoppingCartService,
+                private orderService: OrdersService,
+                public alertCtrl: AlertController) {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
-
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
     }
-  }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
-  }
+    ngOnInit() {
+        this.items = this.shoppingCartService.getItems();
+    }
+
+    removeFromCart(name) {
+        this.shoppingCartService.removeFromCart(name);
+        this.items = this.items.filter((items) => {
+            return items.name != name;
+        });
+    }
+
+    checkout() {
+        this.order.shoppingCart = this.items;
+        this.orderService.createOrder(this.order);
+        this.shoppingCartService.setNull();
+        this.order = new Order;
+        this.items = [];
+        this.showSuccess();
+    }
+
+    showSuccess(){
+        let alert = this.alertCtrl.create({
+            title: 'Dear client!',
+            subTitle: "Thank you for order. We'll reply soon.",
+            buttons: ['OK']
+        });
+        alert.present();
+    }
 }
