@@ -6,13 +6,12 @@
       <p>${{item.price}}.00</p>
     </ion-card-title>
   </ion-card-content>
-  <div>
-    <p>{{item.description}}</p>
+  <div class="description">
+    <p >{{item.description}}</p>
   </div>
   <ion-row no-padding>
     <ion-col>
-      <button ion-button clear small color="danger" icon-left (click)="addToCart(item.name, item.price, 1)">
-        <ion-icon name='star'></ion-icon>
+      <button class="button" (click)="addToCart(item.name, item.price, 1)">
         Add to card
       </button>
     </ion-col>

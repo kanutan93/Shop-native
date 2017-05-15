@@ -4,7 +4,7 @@ import {ItemsService} from "../../services/api/items/items.service";
 import {ShoppingCartService} from "../../services/shopping-cart/shopping-cart.service";
 
 @Component({
-  selector: 'page-home',
+  selector: 'page-shop',
   templateUrl: 'shop.html'
 })
 export class ShopPage {

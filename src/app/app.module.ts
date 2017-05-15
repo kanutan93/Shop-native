@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { ShopPage } from '../pages/shop/shop';
-import { ListPage } from '../pages/order/order';
+import { OrderPage } from '../pages/order/order';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +20,7 @@ import {HttpModule} from "@angular/http";
   declarations: [
     MyApp,
     ShopPage,
-    ListPage,
+    OrderPage,
     ItemCardComponent
   ],
   imports: [
@@ -32,7 +32,7 @@ import {HttpModule} from "@angular/http";
   entryComponents: [
     MyApp,
     ShopPage,
-    ListPage
+    OrderPage
   ],
   providers: [
     StatusBar,

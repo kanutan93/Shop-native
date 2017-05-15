@@ -6,10 +6,10 @@ import {OrdersService} from "../../services/api/orders/orders.service";
 import {ShoppingCartService} from "../../services/shopping-cart/shopping-cart.service";
 
 @Component({
-    selector: 'page-list',
+    selector: 'page-order',
     templateUrl: 'order.html'
 })
-export class ListPage {
+export class OrderPage {
     items: ShoppingCart[];
     order: Order = new Order;
     constructor(public navCtrl: NavController, public navParams: NavParams,
